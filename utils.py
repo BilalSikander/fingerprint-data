@@ -1,6 +1,5 @@
 import cv2
 import glob
-import fprmodules.enhancement as fe
 from sklearn.model_selection import train_test_split
 from constants import IMAGES_PATH
 
@@ -38,8 +37,7 @@ def grayscale_image(image):
 
 # Enhancement using orientation/frequency filtering - Gabor filterbank
 def enhance_image(image):
-    img_e, mask1, orientim1, freqim1 = fe.image_enhance(image)
-    return cv2.normalize(img_e, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=0)
+    return cv2.equalizeHist(image)
 
 
 def get_genuine_impostor_scores(all_scores, identical):
